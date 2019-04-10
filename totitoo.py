@@ -12,6 +12,7 @@ def screen1v1():
     QWE       _|_|_
      ASD   ➤  _|_|_
       ZXC      | |
+
         the first player to get three in a row of their mark wins
         let's start!
     """)
@@ -26,6 +27,7 @@ def screen1vc():
     QWE       _|_|_
      ASD   ➤  _|_|_
       ZXC      | |
+
         try to get three in a row
         let's start!
     """)
@@ -40,6 +42,7 @@ def screenmisere():
     QWE       _|_|_
      ASD   ➤  _|_|_
       ZXC      | |
+      
         get your opponent to make three in a row
         let's start!
     """)
@@ -164,7 +167,7 @@ def jugadacomputadora():
         while (play1 in usedcoordinates):
             play1=random.choice(coordinates)
         usedcoordinates.append(play1)
-        parts[coordinates.index(play1)]=icono_oponente
+        parts[coordinates.index(play1)]=icono_en_uso
     elif second==computername:#si la computadora juega de segundas
         play1=random.choice(coordinates)
         while (play1 in usedcoordinates):
@@ -244,12 +247,15 @@ def turnos1vc():
     print(turn2_1vsc())
     print(table())
 
-ganador="n"
+attempts=["1","2","3","4","5"] #####lista de intentos disponibles.
+
+usedattempts=[]
 def gamemode1v1():
     '''
     Modo de juego 1v1 
     '''
     ganador="n"
+    secondarycount=0
     while(ganador=="n"):##El juego se repite hasta que alguien gana.
         print(turnos1v1())
         wincombos=[(parts[0],parts[1],parts[2]),(parts[3],parts[4],parts[5]),
@@ -260,23 +266,31 @@ def gamemode1v1():
         for i in range(8):#COMPROBACION DE QUE HAYA GANADO
             if (wincombos[i]==winningXcase[0])and(ganador=="n"): 
                 if icono_en_uso=="X":
-                    print("Player {} wins!".format(first))
+                    print("Player {} wins! ₍ᐢ•ﻌ•ᐢ₎*･ﾟ｡ ♡♡♡♡♡♡♡♡♡♡".format(first))
                     ganador=first
                 else:
-                    print("Player {} wins!".format(second))
+                    print("Player {} wins! ₍ᐢ•ﻌ•ᐢ₎*･ﾟ｡ ♡♡♡♡♡♡♡♡♡♡".format(second))
                     ganador=second   
             if (wincombos[i]==winningOcase[0])and(ganador=="n"): 
                 if icono_en_uso=="O":
-                    print("Player {} wins!".format(first))
+                    print("Player {} wins! ₍ᐢ•ﻌ•ᐢ₎*･ﾟ｡ ♡♡♡♡♡♡♡♡♡♡".format(first))
                     ganador=first
                 else:
-                    print("Player {} wins!".format(second))
+                    print("Player {} wins! ₍ᐢ•ﻌ•ᐢ₎*･ﾟ｡ ♡♡♡♡♡♡♡♡♡♡".format(second))
                     ganador=second 
+        #### EN CASO DE EMPATE DETIENE EL JUEGO CUANDO YA NO SE PUEDE GANAR
+        usedattempts.append(attempts[secondarycount])
+        secondarycount=secondarycount+1
+        if (len(usedattempts)==4) and (len(usedcoordinates)>=8) and (ganador=="n"):
+            print ("♡♡♡♡♡♡♡♡♡♡ IT'S A TIE (ㆀ˘･з･˘) ♡♡♡♡♡♡♡♡♡♡")
+            ganador="noone" 
+    
 def gamemode1vc():
     '''
     Modo de juego 1vComputer 
     '''  
     ganador="n"
+    secondarycount=0
     while(ganador=="n"):##El juego se repite hasta que alguien gana.
         print(turnos1vc())
         wincombos=[(parts[0],parts[1],parts[2]),(parts[3],parts[4],parts[5]),
@@ -287,18 +301,60 @@ def gamemode1vc():
         for i in range(8):#COMPROBACION DE QUE HAYA GANADO
             if (wincombos[i]==winningXcase[0])and(ganador=="n"): 
                 if icono_en_uso=="X":
-                    print("Player {} wins!".format(first))
+                    print("Player {} wins! ₍ᐢ•ﻌ•ᐢ₎*･ﾟ｡ ♡♡♡♡♡♡♡♡♡♡".format(first))
                     ganador=first
                 else:
-                    print("Player {} wins!".format(second))
+                    print("Player {} wins! ₍ᐢ•ﻌ•ᐢ₎*･ﾟ｡ ♡♡♡♡♡♡♡♡♡♡".format(second))
                     ganador=second   
             if (wincombos[i]==winningOcase[0])and(ganador=="n"): 
                 if icono_en_uso=="O":
-                    print("Player {} wins!".format(first))
+                    print("Player {} wins! ₍ᐢ•ﻌ•ᐢ₎*･ﾟ｡ ♡♡♡♡♡♡♡♡♡♡".format(first))
                     ganador=first
                 else:
-                    print("Player {} wins!".format(second))
+                    print("Player {} wins! ₍ᐢ•ﻌ•ᐢ₎*･ﾟ｡ ♡♡♡♡♡♡♡♡♡♡".format(second))
                     ganador=second 
+        #### EN CASO DE EMPATE DETIENE EL JUEGO CUANDO YA NO SE PUEDE GANAR
+        usedattempts.append(attempts[secondarycount])
+        secondarycount=secondarycount+1
+        if (len(usedattempts)==4) and (len(usedcoordinates)>=8) and (ganador=="n"):
+            print ("♡♡♡♡♡♡♡♡♡♡ IT'S A TIE (ㆀ˘･з･˘) ♡♡♡♡♡♡♡♡♡♡")
+            ganador="noone" 
+
+def gamemodemisere():
+    '''
+    Modo de juego 1v1 misere
+    ''' 
+    perdedor="n"
+    secondarycount=0
+    while(perdedor=="n"):##El juego se repite hasta que alguien gana.
+        print(turnos1v1())
+        losecombos=[(parts[0],parts[1],parts[2]),(parts[3],parts[4],parts[5]),
+        (parts[6],parts[7],parts[8]),(parts[0],parts[3],parts[6]),
+        (parts[6],parts[4],parts[2]),(parts[0],parts[4],parts[8]),
+        (parts[2],parts[5],parts[8]),(parts[1],parts[4],parts[7])
+        ]
+        for i in range(8):#COMPROBACION DE QUE HAYA GANADO
+            if (losecombos[i]==winningXcase[0])and(perdedor=="n"): 
+                if icono_en_uso=="X":
+                    print("Player {} wins! ₍ᐢ•ﻌ•ᐢ₎*･ﾟ｡ ♡♡♡♡♡♡♡♡♡♡".format(second))
+                    perdedor=first
+                else:
+                    print("Player {} wins! ₍ᐢ•ﻌ•ᐢ₎*･ﾟ｡ ♡♡♡♡♡♡♡♡♡♡".format(first))
+                    perdedor=second   
+            if (losecombos[i]==winningOcase[0])and(perdedor=="n"): 
+                if icono_en_uso=="O":
+                    print("Player {} wins! ₍ᐢ•ﻌ•ᐢ₎*･ﾟ｡ ♡♡♡♡♡♡♡♡♡♡".format(second))
+                    perdedor=first
+                else:
+                    print("Player {} wins! ₍ᐢ•ﻌ•ᐢ₎*･ﾟ｡ ♡♡♡♡♡♡♡♡♡♡".format(first))
+                    perdedor=second
+        #### EN CASO DE EMPATE DETIENE EL JUEGO CUANDO YA NO SE PUEDE GANAR
+        usedattempts.append(attempts[secondarycount])
+        secondarycount=secondarycount+1
+        if (len(usedattempts)==4) and (len(usedcoordinates)>=8) and (perdedor=="n"):
+            print ("♡♡♡♡♡♡♡♡♡♡ IT'S A TIE (ㆀ˘･з･˘) ♡♡♡♡♡♡♡♡♡♡")
+            perdedor="noone" 
+
 ############################################################################################################
 ###########################SE ACTIVA EL PROGRAMA DEPENDE DE LO ELEJIDO EN EL MENU ##########################
 
@@ -306,5 +362,7 @@ if (selection=="1"):
     print(gamemode1v1())
 if (selection=="2"):
     print(gamemode1vc())
+if (selection=="3"):
+    print(gamemodemisere())
 
 
